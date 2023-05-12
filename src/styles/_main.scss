@@ -1,0 +1,32 @@
+html {
+    font-size: 62.5%;
+    font-family: 'Red Hat Text', sans-serif;
+}
+
+#root {
+    background: linear-gradient(rgb(23, 18, 33), rgb(40, 30, 43));
+}
+
+.main {
+    margin: auto;
+    width: 144rem;
+    height: 80rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .bg-hills {
+        position: absolute;
+        top: 60rem;
+        left: 0;
+        z-index: 0;
+    }
+
+    .bg-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+}
