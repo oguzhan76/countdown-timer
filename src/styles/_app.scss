@@ -1,0 +1,66 @@
+@mixin social-buttons {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    
+    &:hover {
+        cursor: pointer;
+        filter: invert(55%) sepia(14%) saturate(5637%) hue-rotate(310deg) brightness(100%) contrast(97%);
+    }
+}
+
+.main {
+    margin: auto;
+    width: 144rem;
+    height: 80rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .bg-hills {
+        position: absolute;
+        top: 60rem;
+        left: 0;
+        z-index: 0;
+    }
+
+    .bg-stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+
+    h1 {
+        color: white;
+        font-size: 2rem;
+        letter-spacing: 0.9rem;
+        margin-top: 13rem;
+        margin-bottom: 10.5rem;
+    }
+
+    .socials-section {
+        margin-top: 23.2rem;
+        width: 14rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        z-index: 1;
+
+        .facebook-button {
+            @include social-buttons();
+            background: url('/icon-facebook.svg');
+        }
+
+        .pinterest-button {
+            @include social-buttons();
+            background: url('/icon-pinterest.svg');
+        }
+
+        .instagram-button{
+            @include social-buttons();
+            background: url('/icon-instagram.svg');
+        }
+    }
+}

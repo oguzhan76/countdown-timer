@@ -2,7 +2,7 @@ import { useEffect, useState} from 'react';
 import CardUnit from "./card";
 
 const Clock = () => {
-    const date = new Date(2023, 4, 21, 16, 47, 23);
+    const date = new Date(2023, 4, 14, 8, 0, 0);
     const [days, setDays] = useState(0);
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -15,7 +15,7 @@ const Clock = () => {
 
     useEffect(() => {
         calculateRemainingTime();
-    }, [])
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(calculateRemainingTime, 1000);
