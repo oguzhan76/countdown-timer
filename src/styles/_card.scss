@@ -7,14 +7,28 @@ $soft-red: hsl(345, 95%, 68%);
 $soft-red-shaded: hsl(345, 52%, 53%);
 $cardColor: $dark-blue;
 
+$border-radius: 1rem;
+$foldLine-color: rgba(1,1,1) ;
+
 $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+@mixin corner-dot {
+    content: '';
+    position: absolute;
+    top: 6.5rem;
+    left: -0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $very-very-dark-blue;
+    overflow: hidden;
+}
 
 .card-container {
     background-color: $very-dark-blue;
-    margin-left: 3rem;
-    border-radius: 3rem;
-    width: 20rem;
-    height: 20rem;
+    margin: auto;
+    width: 15rem;
+    height: 14rem;
     position: relative;
     border-radius: 3rem;
     display: flex;
@@ -26,7 +40,7 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
     p {
         color: $soft-red;
-        font-size: 10rem;
+        font-size: 7.5rem;
         margin: 0;
     }
 }
@@ -43,26 +57,44 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 .upperCard {
     
     align-items: flex-end;
-    border-bottom: 1px solid black;
-    border-top-left-radius: 2rem ;
-    border-top-right-radius: 2rem ;
+    box-shadow: 0 -97% 0 black inset;
+    border-top-left-radius: $border-radius ;
+    border-top-right-radius: $border-radius ;
     background-color: $dark-blue-shaded;
 
     p {
         transform: translateY(50%);
         color: $soft-red-shaded;
     }
+
+    &::before {
+        @include corner-dot();
+    }
+    &::after {
+        @include corner-dot();
+        top: 6.5rem;
+        left: 14.5rem;
+    }
 }
 
 .lowerCard {
     align-items: flex-start;
-    border-top: 1px solid black;
-    border-bottom-left-radius: 2rem ;
-    border-bottom-right-radius: 2rem ;
+    border-bottom-left-radius: $border-radius ;
+    border-bottom-right-radius: $border-radius ;
     background-color: $dark-blue;
 
     p {
         transform: translateY(-50%);
+    }
+
+    &::before {
+        @include corner-dot();
+        top: -0.5rem;
+    }
+    &::after {
+        @include corner-dot();
+        top: -0.5rem;
+        left: 14.5rem;
     }
 }
 
@@ -83,7 +115,6 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transform-origin: 50% 0%;
     transform: rotateX(180deg);
     background-color: $dark-blue;
-    border-top: 1px solid black;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
     animation: unfold 0.6s $easeInOut 0s 1 normal forwards;
@@ -91,6 +122,16 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
     p {
         transform: translateY(-50%);
+    }
+
+    &::before {
+        @include corner-dot();
+        top: -0.5rem;
+    }
+    &::after {
+        @include corner-dot();
+        top: -0.5rem;
+        left: 14.5rem;
     }
 }
 
@@ -100,7 +141,6 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     transform-origin: 50% 100%;
     transform: rotateX(0deg);
     background-color: $dark-blue-shaded;
-    border-bottom: 1px solid black;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     animation: fold 0.6s $easeInOut 0s 1 normal forwards;
@@ -109,6 +149,15 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     p {
         transform: translateY(50%);
         color: $soft-red-shaded;
+    }
+
+    &::before {
+        @include corner-dot();
+    }
+    &::after {
+        @include corner-dot();
+        top: 6.5rem;
+        left: 14.5rem;
     }
 }
 
@@ -127,5 +176,19 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     }
     to {
         transform: rotateX(0deg);
+    }
+}
+
+.card-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5rem;
+        margin-top: 2.5rem;
+        color: $Grayish-blue;
     }
 }

@@ -23,11 +23,16 @@ const CardUnit = ({unit, content, flip}) => {
     const anim2 = !flip ? 'fold' : 'unfold';
 
     return (
-        <div className="card-container">
-            <StaticCard content={MakeTwoDigits(content)} position={'upperCard'}/>
-            <StaticCard content={MakeTwoDigits(prevContent)} position={'lowerCard'}/>
-            <AnimatedCard content={MakeTwoDigits(animContent1)} animation={anim1}/>
-            <AnimatedCard content={MakeTwoDigits(animContent2)} animation={anim2}/>
+        <div>    
+            <div className="card-container">
+                <StaticCard content={MakeTwoDigits(content)} position={'upperCard'}/>
+                <StaticCard content={MakeTwoDigits(prevContent)} position={'lowerCard'}/>
+                <AnimatedCard content={MakeTwoDigits(animContent1)} animation={anim1}/>
+                <AnimatedCard content={MakeTwoDigits(animContent2)} animation={anim2}/>
+            </div>
+            <div className='card-label'>
+                <p>{unit}</p>
+            </div>
         </div>
     )
 }

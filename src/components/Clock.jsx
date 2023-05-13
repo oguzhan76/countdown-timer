@@ -2,7 +2,7 @@ import { useEffect, useState} from 'react';
 import CardUnit from "./card";
 
 const Clock = () => {
-    const date = new Date(2023, 4, 13, 16, 47, 23);
+    const date = new Date(2023, 4, 21, 16, 47, 23);
     const [days, setDays] = useState(0);
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -54,9 +54,9 @@ const Clock = () => {
 
     return (
         <div className="clock">
-            <CardUnit flip={flipDays} content={days} />
-            <CardUnit flip={flipHours} content={hours} />
-            <CardUnit flip={flipMinutes} content={minutes} />
+            <CardUnit flip={flipDays} content={days} unit={'days'}/>
+            <CardUnit flip={flipHours} content={hours} unit={'hours'}/>
+            <CardUnit flip={flipMinutes} content={minutes} unit={'minutes'}/>
             <CardUnit flip={flipSeconds} content={seconds} unit={'seconds'}/>
 
         </div>

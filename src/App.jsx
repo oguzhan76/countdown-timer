@@ -7,6 +7,7 @@ function App() {
     <div className='main'>
       <img className='bg-stars' src={bg_stars} />  
       <img className='bg-hills' src={bg_hills} />
+      <h1>WE&apos;RE LAUNCHING SOON</h1>
       <Clock />
     </div>
   )
