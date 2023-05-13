@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import CardUnit from "./card";
+import CardUnit from './CardUnit';
 
 const Clock = () => {
     const date = new Date(2023, 4, 14, 8, 0, 0);
