@@ -1,7 +1,12 @@
 $dark-blue: hsl(236, 21%, 26%);
+$dark-blue-shaded: hsl(237, 21%, 19%);
 $very-dark-blue: hsl(235, 16%, 14%);
 $very-very-dark-blue: hsl(234, 17%, 12%);
-$cardColor: rgb(80, 91, 114);
+$Grayish-blue: hsl(237, 18%, 59%);
+$soft-red: hsl(345, 95%, 68%);
+$soft-red-shaded: hsl(345, 52%, 53%);
+$cardColor: $dark-blue;
+
 $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 .card-container {
@@ -16,9 +21,11 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    perspective-origin: 50% 50%;
+    perspective: 80rem;
 
     p {
-        color: hsl(345, 95%, 68%);
+        color: $soft-red;
         font-size: 10rem;
         margin: 0;
     }
@@ -30,27 +37,29 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     justify-content: center;
     width: 100%;
     height: 50%;
-    // overflow: hidden;
+    overflow: hidden;
 }
 
 .upperCard {
+    
     align-items: flex-end;
-    border-bottom: 0.2rem solid black;
+    border-bottom: 1px solid black;
     border-top-left-radius: 2rem ;
     border-top-right-radius: 2rem ;
-    // background-color: aqua;
+    background-color: $dark-blue-shaded;
 
     p {
         transform: translateY(50%);
+        color: $soft-red-shaded;
     }
 }
 
 .lowerCard {
     align-items: flex-start;
-    border-bottom: 0.2rem solid black;
+    border-top: 1px solid black;
     border-bottom-left-radius: 2rem ;
     border-bottom-right-radius: 2rem ;
-    // background-color: aqua;
+    background-color: $dark-blue;
 
     p {
         transform: translateY(-50%);
@@ -72,11 +81,12 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     top: 50%;
     align-items: flex-start;
     transform-origin: 50% 0%;
-    transform: rotateX(00deg);
-    background-color: $cardColor;
+    transform: rotateX(180deg);
+    background-color: $dark-blue;
+    border-top: 1px solid black;
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
-    animation: unfold 0.6s $easeInOut;
+    animation: unfold 0.6s $easeInOut 0s 1 normal forwards;
     transform-style: preserve-3d;
 
     p {
@@ -89,14 +99,16 @@ $easeInOut: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     align-items: flex-end;
     transform-origin: 50% 100%;
     transform: rotateX(0deg);
-    background-color: $cardColor;
+    background-color: $dark-blue-shaded;
+    border-bottom: 1px solid black;
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    animation: fold 0.6s $easeInOut;
+    animation: fold 0.6s $easeInOut 0s 1 normal forwards;
     transform-style: preserve-3d;
 
     p {
-        transform: translateY(50%) ;
+        transform: translateY(50%);
+        color: $soft-red-shaded;
     }
 }
 

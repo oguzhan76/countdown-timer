@@ -1,24 +1,26 @@
-import { useEffect, useState, useCallback } from 'react';
-import Card from "./card";
-
-const MakeTwoDigits = (n) => {
-    if(n === undefined) return '--';
-    return ("0" + n).slice(-2);
-}
+import { useEffect, useState} from 'react';
+import CardUnit from "./card";
 
 const Clock = () => {
-    const date = new Date(2023, 4, 12, 16, 47, 23);
+    const date = new Date(2023, 4, 13, 16, 47, 23);
     const [days, setDays] = useState(0);
-    const [flipDays, setFlipDays] = useState(false);
-
     const [hours, setHours] = useState(0);
-    const [flipHours, setFlipHours] = useState(false);
-
     const [minutes, setMinutes] = useState(0);
-    const [flipMinutes, setFlipMinutes] = useState(false);
-
     const [seconds, setSeconds] = useState(0);
+
+    const [flipDays, setFlipDays] = useState(false);
+    const [flipHours, setFlipHours] = useState(false);
+    const [flipMinutes, setFlipMinutes] = useState(false);
     const [flipSeconds, setFlipSeconds] = useState(false);
+
+    useEffect(() => {
+        calculateRemainingTime();
+    }, [])
+
+    useEffect(() => {
+        const interval = setInterval(calculateRemainingTime, 1000);
+        return () => clearInterval(interval);
+    }, [days, hours, minutes, seconds]);
 
     const calculateRemainingTime = () =>{
         const now = new Date();
@@ -26,18 +28,13 @@ const Clock = () => {
 
         const remDay = Math.floor(remainingMS / (1000*60*60*24));
         if (remDay !== days ){
-            
             setDays(remDay);
             setFlipDays(prevState => !prevState);
         } 
 
         remainingMS -= remDay * 1000*60*60*24;
         const remHour = Math.floor(remainingMS / (1000*60*60));
-        console.log('remHours: ', remHour);
-        console.log('hours: ', hours);
-        console.log('parent:', flipHours);
         if(remHour !== hours) {
-            console.log('bunlar esit degil')
             setHours(remHour); 
             setFlipHours(prevState => !prevState);
         }
@@ -52,34 +49,18 @@ const Clock = () => {
         remainingMS -= remMins *1000*60;
         const remSecs = Math.floor(remainingMS / 1000);
         setSeconds(remSecs);
-        // console.log(flipSeconds);
         setFlipSeconds(prevState => !prevState);
-        
-
-        setTimeout(calculateRemainingTime, 1000);
     }
-
-    useEffect(() => {
-
-        calculateRemainingTime();
-
-    
-    }, []);
-
-    useEffect(() => {
-        console.log('hours updated');
-    }, [hours])
 
     return (
         <div className="clock">
-
-            <Card flip={flipHours} content={MakeTwoDigits(hours)} />
+            <CardUnit flip={flipDays} content={days} />
+            <CardUnit flip={flipHours} content={hours} />
+            <CardUnit flip={flipMinutes} content={minutes} />
+            <CardUnit flip={flipSeconds} content={seconds} unit={'seconds'}/>
 
         </div>
     )
 }
 
 export default Clock;
-// <Card flip={flipDays} content={MakeTwoDigits(days)} />
-// <Card flip={flipMinutes} content={MakeTwoDigits(minutes)} />
-// <Card flip={flipSeconds} content={MakeTwoDigits(seconds)} />

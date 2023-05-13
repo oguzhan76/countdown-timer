@@ -1,38 +1,41 @@
 import PropTypes from 'prop-types';
+import AnimatedCard from './AnimatedCard';
+import StaticCard from './StaticCard';
 
-const AnimatedCard = ({content, animation, position}) => {
-    return (
-        <div className={`flipcard ${animation}`}>
-            <p>{content}</p>
-        </div>
-    )
+const MakeTwoDigits = (n) => {
+    if(n === undefined) return '--';
+    return ("0" + n).slice(-2);
 }
 
-const StaticCard = ({content, position}) => {
-    return (
-        <div className={position}>
-            <p>{content}</p>
-        </div>
-    )
-}
+const CardUnit = ({unit, content, flip}) => {
 
-const Card = ({content, flip}) => {
-    console.log('flipflop:', flip);
+    let prevContent = content + 1;
+    if(unit == 'hours'){
+        prevContent = prevContent === 25 ? 0 : prevContent;
+    } else if (unit === 'seconds' || unit === 'minutes') {
+        prevContent = prevContent === 60 ? 0 : prevContent;
+    }
+
+    const animContent1 = flip ? prevContent : content;
+    const animContent2 = !flip ? prevContent : content;
+
     const anim1 = flip ? 'fold' : 'unfold';
     const anim2 = !flip ? 'fold' : 'unfold';
 
     return (
         <div className="card-container">
-            <StaticCard content={content} position={'upperCard'}/>
-            <StaticCard content={content} position={'lowerCard'}/>
-            <AnimatedCard content={content} animation={anim1}/>
-            <AnimatedCard content={content} animation={anim2}/>
+            <StaticCard content={MakeTwoDigits(content)} position={'upperCard'}/>
+            <StaticCard content={MakeTwoDigits(prevContent)} position={'lowerCard'}/>
+            <AnimatedCard content={MakeTwoDigits(animContent1)} animation={anim1}/>
+            <AnimatedCard content={MakeTwoDigits(animContent2)} animation={anim2}/>
         </div>
     )
 }
 
-Card.propTypes = {
-    content: PropTypes.string
+CardUnit.propTypes = {
+    content: PropTypes.number,
+    unit: PropTypes.string,
+    flip: PropTypes.bool
 }
 
-export default Card;
+export default CardUnit;
