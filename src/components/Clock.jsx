@@ -1,8 +1,8 @@
 import { useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import CardUnit from './CardUnit';
 
-const Clock = () => {
-    const date = new Date(2023, 4, 14, 8, 0, 0);
+const Clock = ({deadline}) => {
     const [days, setDays] = useState(0);
     const [hours, setHours] = useState(0);
     const [minutes, setMinutes] = useState(0);
@@ -24,7 +24,7 @@ const Clock = () => {
 
     const calculateRemainingTime = () =>{
         const now = new Date();
-        let remainingMS = date - now;
+        let remainingMS = deadline - now;
 
         const remDay = Math.floor(remainingMS / (1000*60*60*24));
         if (remDay !== days ){
@@ -58,9 +58,12 @@ const Clock = () => {
             <CardUnit flip={flipHours} content={hours} unit={'hours'}/>
             <CardUnit flip={flipMinutes} content={minutes} unit={'minutes'}/>
             <CardUnit flip={flipSeconds} content={seconds} unit={'seconds'}/>
-
         </div>
     )
+}
+
+Clock.propTypes = {
+    deadline: PropTypes.object
 }
 
 export default Clock;

@@ -3,12 +3,14 @@ import bg_stars from '/bg-stars.svg';
 import Clock from './components/Clock';
 
 function App() {
+  const deadline = new Date(import.meta.env.VITE_DEADLINE);
+
   return (
     <div className='main'>
       <img className='bg-stars' src={bg_stars} />  
       <img className='bg-hills' src={bg_hills} />
-      <h1>WE&apos;RE LAUNCHING SOON</h1>
-      <Clock />
+      <h1>{import.meta.env.VITE_HEADLINE}</h1>
+      <Clock deadline={deadline}/>
       <div className='socials-section'>
         <span className='facebook-button' /> 
         <span className='pinterest-button' />

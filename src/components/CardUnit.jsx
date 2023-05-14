@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import AnimatedCard from './AnimatedCard';
 import StaticCard from './StaticCard';
@@ -8,6 +9,11 @@ const MakeTwoDigits = (n) => {
 }
 
 const CardUnit = ({unit, content, flip}) => {
+    let preventAnimClass = useRef('preventAnimation');
+
+    useEffect(() => {
+        setTimeout(() => preventAnimClass.current = '', 600);
+    }, []);
 
     let prevContent = content + 1;
     if(unit == 'hours'){
@@ -27,8 +33,8 @@ const CardUnit = ({unit, content, flip}) => {
             <div className="card-container">
                 <StaticCard content={MakeTwoDigits(content)} position={'upperCard'}/>
                 <StaticCard content={MakeTwoDigits(prevContent)} position={'lowerCard'}/>
-                <AnimatedCard content={MakeTwoDigits(animContent1)} animation={anim1}/>
-                <AnimatedCard content={MakeTwoDigits(animContent2)} animation={anim2}/>
+                <AnimatedCard content={MakeTwoDigits(animContent1)} animation={anim1} preventAnim={preventAnimClass.current}/>
+                <AnimatedCard content={MakeTwoDigits(animContent2)} animation={anim2} preventAnim={preventAnimClass.current}/>
             </div>
             <div className='card-label'>
                 <p>{unit}</p>
