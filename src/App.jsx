@@ -3,7 +3,10 @@ import bg_stars from '/bg-stars.svg';
 import Clock from './components/Clock';
 
 function App() {
-  const deadline = new Date(import.meta.env.VITE_DEADLINE);
+  const now = new Date()
+  // this is solely to match with the design.
+  now.setMilliseconds(now.getMilliseconds() + (9 * 24*3600*1000) - (4 * 60000) - (18 * 1000) );
+  const deadline = new Date(import.meta.env.VITE_DEADLINE || now);
 
   return (
     <div className='main'>
